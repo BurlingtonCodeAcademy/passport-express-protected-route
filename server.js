@@ -12,7 +12,7 @@ const app = express();
 
 app.use(passport.initialize());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static("./client/build"));
 app.use(cookieParser());
 
 mongoose.connect("mongodb://localhost:27017/auth-example");
@@ -132,7 +132,7 @@ app.get(
   "/dashboard",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    res.sendFile(__dirname + "/public/dashboard.html");
+    res.sendFile(__dirname + "/client/build/index.html");
   }
 );
 
